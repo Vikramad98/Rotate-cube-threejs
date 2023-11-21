@@ -8,36 +8,41 @@
 </head>
 <body>
     <script>
-        // Your Three.js code will go here
-      // Inside the <script> tag in the body
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-const renderer = new THREE.WebGLRenderer();
-        // After creating the renderer
-renderer.setClearColor(0x000000); // Set the background color to black
+        // Set up the scene
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
         
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+        // Set the background color to black
+        renderer.setClearColor(0x000000);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+        // Create a pink-colored cube
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0xffc0cb }); // Pink color
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
 
-camera.position.z = 5;
-      // Inside the <script> tag in the body, after creating the cube
-const animate = () => {
-    requestAnimationFrame(animate);
+        // Position the cube in the center of the screen
+        cube.position.set(0, 0, 0);
 
-    // Rotate the cube
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+        // Set up the camera position
+        camera.position.z = 5;
 
-    renderer.render(scene, camera);
-};
+        // Add animation for cube rotation
+        const animate = () => {
+            requestAnimationFrame(animate);
 
-animate();
+            // Rotate the cube automatically
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+        };
+
+        // Start the animation
+        animate();
     </script>
 </body>
 </html>
